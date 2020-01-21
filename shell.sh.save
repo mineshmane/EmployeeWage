@@ -1,7 +1,4 @@
 #!/bin/bash -x
-<<<<<<< HEAD
-	echo welcome to employee Wage
-=======
 	echo welcome to employee wage
 	echo  welcome to in attendace usecadse
 isPresent=1;
@@ -14,18 +11,24 @@ FULL_TIME_HR=8;
 PART_TIME_HR=4;
 attendance=$((RANDOM%2))
 employeeType=$((RANDOM%2))
+function getWorkingHours(){
+	case $1 in 
+		$FULL_TIME)
+			WorkTime=8
+			;;
+		$PART_TIME)
+			workTime=4
+			;;	
+}
 	if (( isPresent == attendance  ))
 	then
-		if [ $employeeType ==  $FULL_TIME  ] 
-		then
+		workHours="$( getWorkingHours $((RANDOM%3)) )"
 			wages=$(( $RATE * $FULL_TIME_HR ))
 			echo  "Employee Full Time  Wages" $wages
-		else
-			wages=$(( $RATE * $PART_TIME_HR ))
+		wages=$(( $RATE * $PART_TIME_HR ))
 			echo " PArtime Employee " $wagesxy
 		fi	
 	else
 		echo "Employee is absent wages is zero" $wages
 	fi
 
->>>>>>> uc2_PartTime
