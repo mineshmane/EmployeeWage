@@ -7,10 +7,12 @@ FULL_TIME=2;
 isAbsent=0;
 FULL_TIME_HR=8;
 PART_TIME_HR=4;
+MAX_HRS_IN_MONTH=100;
 NUM_WORKING_DAYS=20
 #Variables
 totalEmpHr=0
 totalWorkingDays=0
+# funtion to getting workhours 
 function getWorkingHours(){
 		case $1 in 
 			$FULL_TIME)
@@ -25,7 +27,7 @@ function getWorkingHours(){
 		esac
 				echo $workHours
 	}
-		while [[ $totalWorkHours -lt 100 && $totalWorkingDays -lt $NUM_WORKING_DAYS ]]
+		while [[ $totalWorkHours -lt $MAX_HRS_IN_MONTH && $totalWorkingDays -lt $NUM_WORKING_DAYS ]]
 		do
 			((totalWorkingDays++))
 			workHours="$( getWorkingHours $((RANDOM%3)) )"	
