@@ -1,13 +1,17 @@
 #!/bin/bash -x
 echo welcome to employee wage
-isPresent=1;
-isAbsent=0;
 RATE=20;
-wgaes=0;
-PART_TIME=0;
-FULL_TIME=1;
+maxWork=4;
+PART_TIME=1;
+FULL_TIME=2;
+isAbsent=0;
 FULL_TIME_HR=8;
 PART_TIME_HR=4;
+NUM_WORKING_DAYS=20
+#Variables
+totalEmpHr=0
+totalWorkingDays=0
+
 function getWorkingHours(){
 		case $1 in 
 			$FULL_TIME)
@@ -16,17 +20,19 @@ function getWorkingHours(){
 			$PART_TIME)
 				workHours=4
 				;;
+			$isAbsent)
+				workHours=0
+				;;
 
 		esac
-		echo $workHours
-}
+			echo $workHours
+	}
 
-attendance=$((RANDOM%2))
-	if (( isPresent == attendance  ))
-	then
-			workHours="$( getWorkingHours $((RANDOM%2)) )"	
-			wages=$(( $RATE * $workHours ))
-			echo  "Employee Full Time  Wages" $wages
-		else
-		echo "Employee is absent wages is zero" $wages
-	fi
+		while [[ $totalWorkingDays -lt $NUM_WORKING_DAYS ]]
+		do
+			((totalWorkingDays++))
+			workHours="$( getWorkingHours $((RANDOM%3)) )"	
+			totalWorkHours=$(( $totalWorkHours + $workHours ))
+		done
+			echo  "Employee Full Time  Wages" totalSalary=$(( $totalWorkHours*$RATE ))
+
