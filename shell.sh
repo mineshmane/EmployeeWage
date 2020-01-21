@@ -1,2 +1,2 @@
 #!/bin/bash -x
-	echo welcome to employee wage
+	echo welcome to employee Wage
